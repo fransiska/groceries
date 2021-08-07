@@ -31,7 +31,7 @@
     </form>
 
     <br />
-    
+
     <h3>Search</h3>
     <form class="row g-3">
       <div class="col-auto">
@@ -44,7 +44,7 @@
     <br />
     <div id="prices">
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
@@ -56,13 +56,18 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       var database = firebase.database();
-                
+
       //create a variable to hold our orders list from firebase
       var firebasePrices = database.ref().child('groceries').child("prices");
 
       function addItem() {
 	let d = new Date();
-	let formattedDate = `${d.getFullYear()}/` + `0${+d.getMonth()+1}/`.slice(-3) + `0${"0"+d.getDate()}`.slice(-2);
+	let formattedDate = `${d.getFullYear()}/` +
+	    `0${d.getMonth()+1}`.slice(-2) + "/" +
+	    `0${d.getDate()}`.slice(-2) + " " +
+	    `0${d.getHours()}`.slice(-2) + ":" +
+	    `0${d.getMinutes()}`.slice(-2) + ":" +
+	    `0${d.getSeconds()}`.slice(-2);
         firebasePrices.push({
 	  date: formattedDate,
           name: $('#nameInput').val(),
