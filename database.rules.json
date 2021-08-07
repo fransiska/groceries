@@ -3,9 +3,11 @@
     ".read": true,
     "groceries": {
       "prices": {
-        ".indexOn": ["name"],
+        ".indexOn": [
+          "name"
+        ],
         "$pushUid": {
-  	      ".write": "!data.exists()"
+          ".write": "!data.exists()"
         }
       }
     }
