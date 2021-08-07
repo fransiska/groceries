@@ -33,12 +33,12 @@
     <br />
 
     <h3>Search</h3>
-    <form class="row g-3">
+    <form class="row g-3" action="javascript:searchByName()">
       <div class="col-auto">
         <input type="text" class="form-control" id="nameSearchInput" placeholder="Name" value="">
       </div>
       <div class="col-auto">
-        <a class="btn btn-primary" onclick="searchByName()">Search</a>
+        <a class="btn btn-primary">Search</a>
       </div>
     </form>
     <br />
@@ -93,7 +93,7 @@
               $('#prices').html('<div class="row"><div class="col">Date</div><div class="col">Name</div><div class="col">Shop</div><div class="col">Price</div></div>')
               let items = snapshot.val();
               Object.entries(items).forEach(([uid,item]) => {
-                var itemElement = `<div class='row'><div class="col">${item.date}</div><div class="col">${item.name}</div><div class="col">${item.shop}</div><div class="col">${item.price}</div></div>`
+                var itemElement = `<div class='row'><div class="col">${item.date ? item.date : "-"}</div><div class="col">${item.name}</div><div class="col">${item.shop}</div><div class="col">${item.price}</div></div>`
                 $('#prices').append(itemElement)
               })
             } else {
